@@ -40,6 +40,7 @@ class DashboardFragment : Fragment() {
 
         binding = FragmentDashboardBinding.inflate(inflater, container, false)
 
+        requireActivity().window.statusBarColor = Color.TRANSPARENT
         user = arguments?.getSerializable("user") as? User
         user?.let {
             binding.userName.text = it.name

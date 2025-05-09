@@ -1,5 +1,6 @@
 package com.example.bachatbox.view.ui
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +18,8 @@ class AboutUsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        FragmentAboutUsBinding.inflate(inflater, container, false)
+        binding = FragmentAboutUsBinding.inflate(inflater, container, false)
+        requireActivity().window.statusBarColor = Color.TRANSPARENT
         return binding.root
     }
 }

@@ -1,5 +1,6 @@
 package com.example.bachatbox.view.ui
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import com.example.bachatbox.data.model.User
 import com.example.bachatbox.databinding.FragmentUserInfoBinding
 import dagger.hilt.android.AndroidEntryPoint
 
+@Suppress("DEPRECATION")
 @AndroidEntryPoint
 class UserInfoFragment : Fragment() {
     private lateinit var binding: FragmentUserInfoBinding
@@ -21,6 +23,8 @@ class UserInfoFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentUserInfoBinding.inflate(inflater, container, false)
+
+        requireActivity().window.statusBarColor = Color.TRANSPARENT
 
         userLogin()
         return binding.root

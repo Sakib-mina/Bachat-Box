@@ -1,6 +1,7 @@
 package com.example.bachatbox.view.ui
 
 import android.app.DatePickerDialog
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -29,6 +30,7 @@ class AddIncomeFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentAddIncomeBinding.inflate(inflater, container, false)
 
+        requireActivity().window.statusBarColor = Color.TRANSPARENT
         transactionType = arguments?.getString("type") ?: "Earn"
         setupSpinner()
         setupInput()

@@ -27,7 +27,7 @@
         android:fontFamily="@font/abeezee"
         android:text="Welcome to"
         android:textColor="@color/white"
-        android:textSize="40sp"
+        android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="HardcodedText" />
@@ -40,7 +40,7 @@
         android:fontFamily="@font/abeezee"
         android:text="Bachat Box."
         android:textColor="@color/white"
-        android:textSize="40sp"
+        android:textSize="36sp"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         tools:ignore="HardcodedText" />
@@ -53,15 +53,15 @@
         android:fontFamily="@font/abeezee"
         android:text="The best way to track your expenses."
         android:textColor="@color/white"
-        android:textSize="21sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         tools:ignore="HardcodedText" />
 
     <ImageView
         android:id="@+id/start_btn"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:background="@drawable/starter_btn_bg"
         android:paddingHorizontal="20dp"
         android:src="@drawable/starter"

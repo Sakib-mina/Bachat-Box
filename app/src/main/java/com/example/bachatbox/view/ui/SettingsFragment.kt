@@ -2,6 +2,7 @@ package com.example.bachatbox.view.ui
 
 
 import android.app.AlertDialog
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -29,6 +30,8 @@ class SettingsFragment : Fragment() {
     ): View? {
 
         binding = FragmentSettingsBinding.inflate(inflater, container, false)
+
+        requireActivity().window.statusBarColor = Color.TRANSPARENT
 
         currentUser = arguments?.getSerializable("user") as? User
         binding.updateInfo.setOnClickListener {

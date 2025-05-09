@@ -18,6 +18,7 @@ import com.github.mikephil.charting.data.PieEntry
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.getValue
 
+@Suppress("DEPRECATION")
 @AndroidEntryPoint
 class MoreTransactionFragment : Fragment() {
     private lateinit var binding: FragmentMoreTransactionBinding
@@ -30,6 +31,8 @@ class MoreTransactionFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentMoreTransactionBinding.inflate(inflater, container, false)
+
+        requireActivity().window.statusBarColor = Color.TRANSPARENT
 
         binding.apply {
             earnBtn.setOnClickListener {

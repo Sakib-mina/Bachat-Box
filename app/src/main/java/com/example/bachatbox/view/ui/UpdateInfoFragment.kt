@@ -1,5 +1,6 @@
 package com.example.bachatbox.view.ui
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -28,6 +29,8 @@ class UpdateInfoFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentUpdateInfoBinding.inflate(inflater, container, false)
+
+        requireActivity().window.statusBarColor = Color.TRANSPARENT
 
         user = arguments?.getSerializable("user") as? User
         user?.let {

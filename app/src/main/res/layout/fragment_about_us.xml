@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="80dp"
         android:fontFamily="@font/abeezee"
         android:text="Bachat Box. Devoloped by\n\nSakib mina.\n\nCo-Founder at Lead Coderz."
         android:textColor="@color/white"

@@ -1,5 +1,6 @@
 package com.example.bachatbox.view.ui
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import com.example.bachatbox.R
 import com.example.bachatbox.databinding.FragmentSplashBinding
 import dagger.hilt.android.AndroidEntryPoint
 
+@Suppress("DEPRECATION")
 @AndroidEntryPoint
 class SplashFragment : Fragment() {
     private lateinit var binding: FragmentSplashBinding
@@ -20,9 +22,12 @@ class SplashFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentSplashBinding.inflate(inflater, container, false)
+
         binding.startBtn.setOnClickListener {
             findNavController().navigate(R.id.action_splashFragment_to_dashboardFragment)
         }
+        requireActivity().window.statusBarColor = Color.TRANSPARENT
+
         return binding.root
     }
 }

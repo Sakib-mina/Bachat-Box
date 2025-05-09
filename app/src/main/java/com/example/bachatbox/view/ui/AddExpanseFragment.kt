@@ -1,6 +1,7 @@
 package com.example.bachatbox.view.ui
 
 import android.app.DatePickerDialog
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -30,6 +31,7 @@ class AddExpanseFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentAddExpanseBinding.inflate(inflater, container, false)
 
+        requireActivity().window.statusBarColor = Color.TRANSPARENT
         transactionType = arguments?.getString("type") ?: "Spend"
 
         val categoryList = listOf(
@@ -73,6 +75,7 @@ class AddExpanseFragment : Fragment() {
             }
         }
     }
+
     private fun setupDatePicker() {
         binding.expDate.setOnClickListener {
             val calendar = Calendar.getInstance()
