@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-
 
     <ImageView
         android:id="@+id/iv_icon"
@@ -13,7 +13,8 @@
         android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/real_estate" />
+        app:srcCompat="@drawable/real_estate"
+        tools:ignore="ContentDescription,ImageContrastCheck" />
 
     <TextView
         android:id="@+id/iv_text"
@@ -24,5 +25,7 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/iv_icon"
         app:layout_constraintStart_toEndOf="@+id/iv_icon"
-        app:layout_constraintTop_toTopOf="@+id/iv_icon" />
+        app:layout_constraintTop_toTopOf="@+id/iv_icon"
+        tools:ignore="HardcodedText,TextContrastCheck" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

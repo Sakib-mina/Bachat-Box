@@ -1,6 +1,5 @@
 package com.example.bachatbox.data.db
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -16,9 +15,6 @@ interface UserDao {
     @Update
     fun updateUser(user: User)
 
-    @Query("SELECT * FROM user")
-    fun getAllUser(): LiveData<List<User>>
-
     @Query("DELETE FROM user")
-    fun logoutUser() // Not suspend, no Coroutine
+    fun logoutUser()
 }

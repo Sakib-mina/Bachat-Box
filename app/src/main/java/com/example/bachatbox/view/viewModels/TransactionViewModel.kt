@@ -14,16 +14,12 @@ class TransactionViewModel @Inject constructor(private val repository: Transacti
 
     val getAllTransaction: LiveData<List<Transaction>> = repository.getAllTransaction
 
-    val getRecentTransactions: LiveData<List<Transaction>> = repository.getRecentTransactions
-
     fun insertTransaction(transaction: Transaction) = repository.insertTransaction(transaction)
 
     val totalEarn: LiveData<Int> = repository.getTotalEarn
 
-    // Total Spend
     val totalSpend: LiveData<Int> = repository.getTotalSpend
 
-    // Available Balance (Earn - Spend) using MediatorLiveData
     val balance = MediatorLiveData<Int>().apply {
         var currentEarn = 0
         var currentSpend = 0
@@ -39,7 +35,7 @@ class TransactionViewModel @Inject constructor(private val repository: Transacti
         }
     }
 
-    fun getTransactionsByCategory(category: String): LiveData<List<Transaction>> {
-        return repository.getTransactionsByCategory(category)
+    fun getTransactionsByType(type: String): LiveData<List<Transaction>> {
+        return repository.getTransactionsByType(type)
     }
 }

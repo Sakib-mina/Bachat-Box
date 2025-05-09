@@ -15,16 +15,12 @@ interface TransactionDao {
     @Query("SELECT * FROM transaction_tb ORDER BY transactionId ASC")
     fun getAll(): LiveData<List<Transaction>>
 
-    @Query("SELECT * FROM transaction_tb ORDER BY transactionId DESC LIMIT 5")
-    fun getRecentTransactions(): LiveData<List<Transaction>>
-
-    @Query("SELECT * FROM transaction_tb WHERE category = :category")
-    fun getTransactionsByCategory(category: String): LiveData<List<Transaction>>
-
-
     @Query("SELECT SUM(amount) FROM transaction_tb WHERE type = 'Earn'")
     fun getTotalEarn(): LiveData<Int>
 
     @Query("SELECT SUM(amount) FROM transaction_tb WHERE type = 'Spend'")
     fun getTotalSpend(): LiveData<Int>
+
+    @Query("SELECT * FROM transaction_tb WHERE type = :type ORDER BY transactionId DESC")
+    fun getTransactionsByType(type: String): LiveData<List<Transaction>>
 }

@@ -34,7 +34,6 @@ class CategorySpinnerAdapter(
 
         binding.ivIcon.setImageResource(category.imageRes)
         binding.ivText.text = category.name
-
         return view
     }
 

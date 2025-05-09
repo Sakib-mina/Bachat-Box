@@ -24,13 +24,12 @@ object TransactionModule {
     }
 
     @Provides
-    fun provideDao(database: TransactionDatabase) : TransactionDao {
+    fun provideDao(database: TransactionDatabase): TransactionDao {
         return database.transactionDao()
     }
 
     @Provides
-    fun provideUserDao(database: TransactionDatabase) : UserDao {
+    fun provideUserDao(database: TransactionDatabase): UserDao {
         return database.userDao()
     }
-
 }

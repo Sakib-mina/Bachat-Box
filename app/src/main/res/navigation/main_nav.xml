@@ -93,12 +93,16 @@
         tools:layout="@layout/fragment_about_us" />
     <fragment
         android:id="@+id/updateInfoFragment"
-        android:name="com.example.bachatbox.UpdateInfoFragment"
+        android:name="com.example.bachatbox.view.ui.UpdateInfoFragment"
         android:label="fragment_update_info"
-        tools:layout="@layout/fragment_update_info" />
+        tools:layout="@layout/fragment_update_info" >
+        <action
+            android:id="@+id/action_updateInfoFragment_to_userInfoFragment"
+            app:destination="@id/userInfoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/moreTransactionFragment"
-        android:name="com.example.bachatbox.MoreTransactionFragment"
+        android:name="com.example.bachatbox.view.ui.MoreTransactionFragment"
         android:label="fragment_more_transaction"
         tools:layout="@layout/fragment_more_transaction" />
 </navigation>

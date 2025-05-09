@@ -11,21 +11,32 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.bachatbox.R
+import com.example.bachatbox.data.model.User
 import com.example.bachatbox.databinding.FragmentSettingsBinding
 import com.example.bachatbox.view.viewModels.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
+@Suppress("DEPRECATION")
 @AndroidEntryPoint
 class SettingsFragment : Fragment() {
-
     private lateinit var binding: FragmentSettingsBinding
     private val userViewModel: UserViewModel by viewModels()
+    private var currentUser: User? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         binding = FragmentSettingsBinding.inflate(inflater, container, false)
+
+        currentUser = arguments?.getSerializable("user") as? User
+        binding.updateInfo.setOnClickListener {
+            val bundle = Bundle().apply {
+                putSerializable("user", currentUser)
+            }
+            findNavController().navigate(R.id.action_settingsFragment_to_updateInfoFragment, bundle)
+        }
 
         binding.apply {
             aboutUs.setOnClickListener {
@@ -55,5 +66,6 @@ class SettingsFragment : Fragment() {
             }
             .setNegativeButton("Cancel", null)
             .show()
+
     }
 }

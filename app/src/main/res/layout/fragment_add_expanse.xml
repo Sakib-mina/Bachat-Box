@@ -7,7 +7,6 @@
     android:background="@drawable/add_expense_bg"
     tools:context=".view.ui.AddExpanseFragment">
 
-
     <TextView
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
@@ -63,8 +62,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textView11"
         tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck" />
 
-
-
     <ImageView
         android:id="@+id/add"
         android:layout_width="wrap_content"
@@ -89,18 +86,19 @@
         android:textColorHint="#D2CECE"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/ic_amount"
-        app:layout_constraintTop_toBottomOf="@+id/ic_amount" />
+        app:layout_constraintTop_toBottomOf="@+id/ic_amount"
+        tools:ignore="Autofill,HardcodedText,VisualLintTextFieldSize" />
 
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/login_input_bg"
-        android:paddingVertical="20dp"
-        android:paddingHorizontal="10dp"
         android:foregroundTint="@color/white"
-        android:layout_marginHorizontal="24dp"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="20dp"
         app:layout_constraintEnd_toEndOf="@+id/exp_name"
         app:layout_constraintStart_toStartOf="@+id/exp_name"
         app:layout_constraintTop_toBottomOf="@+id/exp_name" />
@@ -121,7 +119,7 @@
         android:textColor="@color/white"
         android:textColorHint="#CBCBCB"
         app:layout_constraintStart_toStartOf="@+id/spinner"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
-
+        app:layout_constraintTop_toBottomOf="@+id/spinner"
+        tools:ignore="Autofill,HardcodedText,VisualLintTextFieldSize" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

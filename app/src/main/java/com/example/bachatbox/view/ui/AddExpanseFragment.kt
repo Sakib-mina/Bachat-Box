@@ -19,7 +19,6 @@ import kotlin.getValue
 
 @AndroidEntryPoint
 class AddExpanseFragment : Fragment() {
-
     private lateinit var binding: FragmentAddExpanseBinding
     private val viewModel: TransactionViewModel by viewModels()
     private lateinit var transactionType: String
@@ -31,34 +30,25 @@ class AddExpanseFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentAddExpanseBinding.inflate(inflater, container, false)
 
-        // Get transaction type from arguments (default "Spend")
         transactionType = arguments?.getString("type") ?: "Spend"
 
-        // Category list for Spinner
         val categoryList = listOf(
             "Travel", "Entertainment", "Real-Estate", "Shopping", "Food",
             "Transport", "Health", "Salary", "Gift", "Others"
         )
-
-        // Set up the category spinner with the list
         setupSpinner(categoryList)
-
-        // Set up the input fields and button click
         setupInput()
-
         setupDatePicker()
 
         return binding.root
     }
 
-    // Set up the spinner with category list
     private fun setupSpinner(categoryList: List<String>) {
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, categoryList)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinner.adapter = adapter
     }
 
-    // Set up the button click action for adding a transaction
     private fun setupInput() {
         binding.add.setOnClickListener {
             val name = binding.expName.text.toString()
@@ -66,27 +56,19 @@ class AddExpanseFragment : Fragment() {
             val category = binding.spinner.selectedItem.toString()
             val date = binding.expDate.text.toString()
 
-            // Check if name and date are provided
             if (name.isNotEmpty() && date.isNotEmpty()) {
                 val transaction = Transaction(
                     name = name,
                     amount = amount,
                     category = category,
                     transactionDate = date,
-                    type = "Spend"// Use dynamic transaction type
-
+                    type = "Spend"
                 )
-
-                // Insert transaction into database
                 viewModel.insertTransaction(transaction)
-
-                // Navigate back to previous fragment
                 findNavController().popBackStack()
 
-                // Show success message
                 Toast.makeText(requireContext(), "Transaction added successfully", Toast.LENGTH_SHORT).show()
             } else {
-                // Show error if fields are not filled
                 Toast.makeText(requireContext(), "Please fill all fields", Toast.LENGTH_SHORT).show()
             }
         }

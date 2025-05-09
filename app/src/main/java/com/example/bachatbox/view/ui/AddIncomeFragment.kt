@@ -18,11 +18,9 @@ import java.util.Calendar
 
 @AndroidEntryPoint
 class AddIncomeFragment : Fragment() {
-
     private lateinit var binding: FragmentAddIncomeBinding
     private val viewModel: TransactionViewModel by viewModels()
     private lateinit var transactionType: String
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +30,6 @@ class AddIncomeFragment : Fragment() {
         binding = FragmentAddIncomeBinding.inflate(inflater, container, false)
 
         transactionType = arguments?.getString("type") ?: "Earn"
-
         setupSpinner()
         setupInput()
         setupDatePicker()

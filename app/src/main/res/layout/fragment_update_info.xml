@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/login_bg"
-    tools:context="UpdateInfoFragment">
+    tools:context=".view.ui.UpdateInfoFragment">
 
     <TextView
         android:id="@+id/textView14"
@@ -18,7 +18,8 @@
         android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout4"
@@ -47,7 +48,8 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="Autofill,HardcodedText,VisualLintTextFieldSize" />
 
         <EditText
             android:id="@+id/up_total_bal"
@@ -66,8 +68,8 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="@+id/u_name"
             app:layout_constraintStart_toStartOf="@+id/u_name"
-            app:layout_constraintTop_toBottomOf="@+id/u_name" />
-
+            app:layout_constraintTop_toBottomOf="@+id/u_name"
+            tools:ignore="Autofill,HardcodedText,VisualLintTextFieldSize" />
 
         <EditText
             android:id="@+id/up_per_months"
@@ -85,12 +87,13 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="@+id/up_total_bal"
             app:layout_constraintStart_toStartOf="@+id/up_total_bal"
-            app:layout_constraintTop_toBottomOf="@+id/up_total_bal" />
+            app:layout_constraintTop_toBottomOf="@+id/up_total_bal"
+            tools:ignore="Autofill,HardcodedText,VisualLintTextFieldSize" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button"
+        android:id="@+id/update"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
@@ -101,7 +104,7 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/constraintLayout4"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
-
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4"
+        tools:ignore="HardcodedText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

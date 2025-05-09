@@ -2,8 +2,6 @@ package com.example.bachatbox.data.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.bachatbox.data.db.TransactionDao
-import com.example.bachatbox.data.db.UserDao
 import com.example.bachatbox.data.model.Transaction
 import com.example.bachatbox.data.model.User
 

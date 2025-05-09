@@ -5,18 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.bachatbox.R
 import com.example.bachatbox.data.model.User
 import com.example.bachatbox.databinding.FragmentUserInfoBinding
-import com.example.bachatbox.view.viewModels.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class UserInfoFragment : Fragment() {
     private lateinit var binding: FragmentUserInfoBinding
-    private val viewModel: UserViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,6 +21,7 @@ class UserInfoFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentUserInfoBinding.inflate(inflater, container, false)
+
         userLogin()
         return binding.root
     }
@@ -36,7 +34,6 @@ class UserInfoFragment : Fragment() {
 
             var isValid = true
 
-            // Name validation
             if (name.isEmpty()) {
                 binding.userName.error = "Name is required"
                 isValid = false
@@ -45,7 +42,6 @@ class UserInfoFragment : Fragment() {
                 isValid = false
             }
 
-            // Total Balance validation
             if (totalBalanceText.isEmpty()) {
                 binding.totalBalance.error = "Balance is required"
                 isValid = false
@@ -62,7 +58,6 @@ class UserInfoFragment : Fragment() {
                 }
             }
 
-            // Income Per Month validation
             if (incomePMText.isEmpty()) {
                 binding.incomePerM.error = "Monthly income is required"
                 isValid = false
@@ -79,7 +74,6 @@ class UserInfoFragment : Fragment() {
                 }
             }
 
-            // If all valid, proceed to next screen
             if (isValid) {
                 val bundle = Bundle().apply {
                     putSerializable(

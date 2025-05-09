@@ -12,11 +12,9 @@ class TransactionRepository @Inject constructor(private val transactionDao: Tran
     val getTotalEarn: LiveData<Int> = transactionDao.getTotalEarn()
     val getTotalSpend: LiveData<Int> = transactionDao.getTotalSpend()
 
-    val getRecentTransactions: LiveData<List<Transaction>> = transactionDao.getRecentTransactions()
-
     fun insertTransaction(transaction: Transaction) = transactionDao.insert(transaction)
 
-    fun getTransactionsByCategory(category: String): LiveData<List<Transaction>> {
-        return transactionDao.getTransactionsByCategory(category)
+    fun getTransactionsByType(type: String): LiveData<List<Transaction>> {
+        return transactionDao.getTransactionsByType(type)
     }
 }

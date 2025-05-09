@@ -8,10 +8,9 @@ import java.io.Serializable
 data class Transaction(
     @PrimaryKey(autoGenerate = true)
     val transactionId: Int = 0,
-    val category: String,           // e.g. "Food", "Shopping"
-    val name: String,               // e.g. "Burger King"
-    val transactionDate: String,    // e.g. "2025-04-25"
-    val amount: Double,             // e.g. 500.0
+    val category: String,
+    val name: String,
+    val transactionDate: String,
+    val amount: Double,
     val type: String,
-
 ): Serializable
