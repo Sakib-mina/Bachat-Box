@@ -21,6 +21,9 @@ interface TransactionDao {
     @Query("SELECT SUM(amount) FROM transaction_tb WHERE type = 'Spend'")
     fun getTotalSpend(): LiveData<Int>
 
+    @Query("DELETE FROM transaction_tb")
+    fun logoutUser()
+
     @Query("SELECT * FROM transaction_tb WHERE type = :type ORDER BY transactionId DESC")
     fun getTransactionsByType(type: String): LiveData<List<Transaction>>
 

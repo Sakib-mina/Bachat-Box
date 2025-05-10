@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.bachatbox.R
 import com.example.bachatbox.data.model.User
 import com.example.bachatbox.databinding.FragmentSettingsBinding
+import com.example.bachatbox.view.viewModels.TransactionViewModel
 import com.example.bachatbox.view.viewModels.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,6 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class SettingsFragment : Fragment() {
     private lateinit var binding: FragmentSettingsBinding
     private val userViewModel: UserViewModel by viewModels()
+    private val viewModel: TransactionViewModel by viewModels()
     private var currentUser: User? = null
 
     override fun onCreateView(
@@ -61,6 +63,7 @@ class SettingsFragment : Fragment() {
             .setMessage("Are you sure you want to logout?")
             .setPositiveButton("Yes") { _, _ ->
                 userViewModel.logoutUser()
+                viewModel.logoutUser()
 
                 Toast.makeText(requireContext(), "Logged out successfully", Toast.LENGTH_SHORT)
                     .show()

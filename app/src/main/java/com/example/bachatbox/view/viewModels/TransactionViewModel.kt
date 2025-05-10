@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.example.bachatbox.data.model.Transaction
 import com.example.bachatbox.data.repository.TransactionRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import java.util.concurrent.Executors
 import javax.inject.Inject
 
 @HiltViewModel
@@ -41,5 +42,11 @@ class TransactionViewModel @Inject constructor(private val repository: Transacti
 
     fun getTransactionsByMonth(monthIndex: Int): LiveData<List<Transaction>> {
         return repository.getTransactionsByMonth(monthIndex)
+    }
+
+    fun logoutUser() {
+        Executors.newSingleThreadExecutor().execute {
+            repository.logoutUser()
+        }
     }
 }

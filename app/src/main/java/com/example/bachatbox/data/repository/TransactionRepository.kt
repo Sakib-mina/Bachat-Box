@@ -20,6 +20,10 @@ class TransactionRepository @Inject constructor(private val transactionDao: Tran
         return transactionDao.getTransactionsByType(type)
     }
 
+    fun logoutUser() {
+        transactionDao.logoutUser()
+    }
+
     @SuppressLint("DefaultLocale")
     fun getTransactionsByMonth(monthIndex: Int): LiveData<List<Transaction>> {
         return if (monthIndex == 0) {
