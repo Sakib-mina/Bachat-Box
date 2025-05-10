@@ -7,8 +7,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.bachatbox.data.model.Transaction
 import com.example.bachatbox.databinding.FragmentMoreTransactionBinding
 import com.example.bachatbox.view.adapter.TransactionAdapter
 import com.example.bachatbox.view.viewModels.TransactionViewModel
@@ -28,29 +31,52 @@ class MoreTransactionFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    ): View {
         binding = FragmentMoreTransactionBinding.inflate(inflater, container, false)
 
         requireActivity().window.statusBarColor = Color.TRANSPARENT
 
+        setupSpinner()
+        setupRecyclerView()
+        observeAllTransactions()
+        observeData()
+
         binding.apply {
             earnBtn.setOnClickListener {
-                observeTransactionsByType("Earn")
+                viewModels.getTransactionsByType("Earn").observe(viewLifecycleOwner) { list ->
+                    adapter.updateList(list.reversed())
+                }
             }
             spendBtn.setOnClickListener {
-                observeTransactionsByType("Spend")
+                viewModels.getTransactionsByType("Spend").observe(viewLifecycleOwner) { list ->
+                    adapter.updateList(list.reversed())
+                }
             }
             All.setOnClickListener {
                 observeAllTransactions()
             }
         }
-
-        setupRecyclerView()
-        observeAllTransactions()
-        observeData()
-
         return binding.root
+    }
+
+    private fun setupSpinner() {
+        val months = listOf(
+            "All", "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        )
+        val spinnerAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, months)
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.monthlySpinner.adapter = spinnerAdapter
+
+        binding.monthlySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                viewModels.getTransactionsByMonth(position).observe(viewLifecycleOwner) { list ->
+                    adapter.updateList(list.reversed())
+                    updatePieChart(list)
+                }
+            }
+            override fun onNothingSelected(parent: AdapterView<*>) {}
+        }
     }
 
     private fun setupRecyclerView() {
@@ -61,8 +87,7 @@ class MoreTransactionFragment : Fragment() {
 
     private fun observeAllTransactions() {
         viewModels.getAllTransaction.observe(viewLifecycleOwner) { list ->
-            adapter = TransactionAdapter(list.reversed())
-            binding.moreTransactionRecyclerView.adapter = adapter
+            adapter.updateList(list.reversed())
         }
     }
 
@@ -71,7 +96,6 @@ class MoreTransactionFragment : Fragment() {
         viewModels.totalEarn.observe(viewLifecycleOwner) { earn ->
             val totalEarn = earn ?: 0
             val totalSpend = viewModels.totalSpend.value ?: 0
-
             binding.earned.text = "$ $totalEarn"
             setupPieChart(totalEarn, totalSpend)
         }
@@ -79,7 +103,6 @@ class MoreTransactionFragment : Fragment() {
         viewModels.totalSpend.observe(viewLifecycleOwner) { spend ->
             val totalEarn = viewModels.totalEarn.value ?: 0
             val totalSpend = spend ?: 0
-
             binding.spend.text = "$ $totalSpend"
             setupPieChart(totalEarn, totalSpend)
         }
@@ -112,10 +135,9 @@ class MoreTransactionFragment : Fragment() {
         }
     }
 
-    private fun observeTransactionsByType(type: String) {
-        viewModels.getTransactionsByType(type).observe(viewLifecycleOwner) { list ->
-            adapter = TransactionAdapter(list.reversed())
-            binding.moreTransactionRecyclerView.adapter = adapter
-        }
+    private fun updatePieChart(list: List<Transaction>) {
+        val totalEarn = list.filter { it.type == "Earn" }.sumOf { it.amount }
+        val totalSpend = list.filter { it.type == "Spend" }.sumOf { it.amount }
+        setupPieChart(totalEarn.toInt(), totalSpend.toInt())
     }
 }

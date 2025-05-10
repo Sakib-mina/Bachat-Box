@@ -9,16 +9,16 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class TransactionViewModel @Inject constructor(private val repository: TransactionRepository) :
-    ViewModel() {
+class TransactionViewModel @Inject constructor(private val repository: TransactionRepository) : ViewModel() {
 
     val getAllTransaction: LiveData<List<Transaction>> = repository.getAllTransaction
 
-    fun insertTransaction(transaction: Transaction) = repository.insertTransaction(transaction)
-
     val totalEarn: LiveData<Int> = repository.getTotalEarn
-
     val totalSpend: LiveData<Int> = repository.getTotalSpend
+
+    fun insertTransaction(transaction: Transaction) {
+        repository.insertTransaction(transaction)
+    }
 
     val balance = MediatorLiveData<Int>().apply {
         var currentEarn = 0
@@ -37,5 +37,9 @@ class TransactionViewModel @Inject constructor(private val repository: Transacti
 
     fun getTransactionsByType(type: String): LiveData<List<Transaction>> {
         return repository.getTransactionsByType(type)
+    }
+
+    fun getTransactionsByMonth(monthIndex: Int): LiveData<List<Transaction>> {
+        return repository.getTransactionsByMonth(monthIndex)
     }
 }

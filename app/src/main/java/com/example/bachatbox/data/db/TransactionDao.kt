@@ -23,4 +23,10 @@ interface TransactionDao {
 
     @Query("SELECT * FROM transaction_tb WHERE type = :type ORDER BY transactionId DESC")
     fun getTransactionsByType(type: String): LiveData<List<Transaction>>
+
+    @Query("SELECT * FROM transaction_tb WHERE strftime('%m', transactionDate) = :month ORDER BY transactionDate DESC")
+    fun getTransactionsByMonth(month: String): LiveData<List<Transaction>>
+
+    @Query("SELECT * FROM transaction_tb WHERE type = :type AND strftime('%m', transactionDate) = :month ORDER BY transactionDate DESC")
+    fun getTransactionsByTypeAndMonth(type: String, month: String): LiveData<List<Transaction>>
 }

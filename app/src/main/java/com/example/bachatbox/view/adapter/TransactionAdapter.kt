@@ -1,5 +1,6 @@
 package com.example.bachatbox.view.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -7,8 +8,14 @@ import com.example.bachatbox.R
 import com.example.bachatbox.data.model.Transaction
 import com.example.bachatbox.databinding.ItemDesignBinding
 
-class TransactionAdapter(private val transactions: List<Transaction>) :
+class TransactionAdapter(private var transactions: List<Transaction>) :
     RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder>() {
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateList(newTransactions: List<Transaction>) {
+        this.transactions = newTransactions
+        notifyDataSetChanged()
+    }
 
     inner class TransactionViewHolder(val binding: ItemDesignBinding) :
         RecyclerView.ViewHolder(binding.root)
